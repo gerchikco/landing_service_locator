@@ -14,7 +14,7 @@ window.addEventListener('load', async () => {
 		if (!matched) {
 			throw new Error(result);
         }
-        // console.log({ result, });
+        console.log({ result, });
         const url = new URL(result.src);
         const form = document.querySelector('form.aac');
         if (form && !form.url) {
@@ -25,6 +25,6 @@ window.addEventListener('load', async () => {
             form.appendChild(hidden);
         }
 	} catch (error) {
-		// console.log({ error, });
+		console.log({ error, });
 	}
 });
