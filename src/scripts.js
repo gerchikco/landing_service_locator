@@ -14,13 +14,14 @@ window.addEventListener('load', async () => {
 		if (!matched) {
 			throw new Error(result);
         }
-		// console.log({ result, });
+        // console.log({ result, });
+        const url = new URL(result.src);
         const form = document.querySelector('form.aac');
         if (form && !form.url) {
             const hidden = document.createElement('input')
             hidden.setAttribute('type', 'hidden');
             hidden.setAttribute('name', 'url');
-            hidden.setAttribute('value', result.src);
+            hidden.setAttribute('value', url.origin);
             form.appendChild(hidden);
         }
 	} catch (error) {
