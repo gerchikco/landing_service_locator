@@ -1,5 +1,19 @@
 {
-    "src": [
+    "back": [
+        {
+            "match": "\"kOu4GmRGB1r336BVi25UMw==\"",
+            "src": "https://backoffice.gerchikco.com/api/core/account/health-check"
+        },
+        {
+            "match": "\"kOu4GmRGB1r336BVi25UMw==\"",
+            "src": "https://backoffice.gtm-fx.com/api/core/account/health-check"
+        },
+        {
+            "match": "\"kOu4GmRGB1r336BVi25UMw==\"",
+            "src": "http://crm.go2m.exchange:8080/api/core/account/health-check"
+        }
+    ],
+    "po": [
         {
             "match": "\"HcyWKBYQ1LUEHQCy31B4Dw==\"",
             "src": "https://po.gerchikco.com/api/health-check"

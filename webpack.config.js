@@ -1,8 +1,7 @@
 const path = require('path');
+const process = require('process');
+const { env } = process;
 const webpack = require('webpack');
-
-
-
 
 /*
  * We've enabled Postcss, autoprefixer and precss for you. This allows your app
@@ -18,12 +17,8 @@ const webpack = require('webpack');
  * https://github.com/jonathantneal/precss
  *
  */
-
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
-
-
-
 
 /*
  * We've enabled MiniCssExtractPlugin for you. This allows your app to
@@ -33,16 +28,9 @@ const precss = require('precss');
  * https://github.com/webpack-contrib/mini-css-extract-plugin
  *
  */
-
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-
-
-
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
-
-
 
 /*
  * We've enabled HtmlWebpackPlugin for you! This generates a html
@@ -55,15 +43,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 
+const VersionFile = require('webpack-version-file');
 
 const WebpackObfuscator = require('webpack-obfuscator');
 
 
 module.exports = {
-  mode: 'production',
+  mode: env.NODE_ENV || 'development',
 
   entry: {
     scripts: './src/scripts.js'
@@ -79,6 +69,8 @@ module.exports = {
   plugins: [
     new webpack.ProgressPlugin(),
     // new webpack.HotModuleReplacementPlugin(),
+    // https://habr.com/ru/post/524260/
+    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename:'styles.[contenthash].css',
     }),
@@ -116,6 +108,19 @@ module.exports = {
         },
       },
     }),
+    new VersionFile({
+      data: {
+        date: (new Date()).toGMTString(),
+        environment: env.NODE_ENV || 'development',        
+      },
+      output: './docs/version.txt',
+      package: './package.json',
+      templateString: [
+        `Build date: <%= date %>`,
+        `Environment: <%= environment %>`,
+        `Version: <%= name %>@<%= version %>`,
+      ].join('\n'),
+    }),
   ],
 
   module: {
@@ -151,7 +156,12 @@ module.exports = {
   },
 
   devServer: {
+    compress: true,
+    contentBase: path.resolve(__dirname, './trg'),
+    historyApiFallback: true,
+    host: 'localhost',
+    hot: true,
     open: true,
-    host: 'localhost'
-  }
-}
+    port: 9000,
+  },
+};

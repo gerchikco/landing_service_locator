@@ -6,7 +6,7 @@
   "author": "zanner <zanner@ft>",
   "license": "MIT",
   "dependencies": {
-    "core-js": "3"
+    "process": "^0.11.10"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.13",
@@ -19,6 +19,8 @@
     "autoprefixer": "^10.2.4",
     "babel-loader": "^8.2.2",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "core-js": "3",
     "css-loader": "^5.0.1",
     "filemanager-webpack-plugin": "^3.1.0",
     "html-webpack-plugin": "^5.0.0",
@@ -31,11 +33,13 @@
     "webpack-cli": "^4.5.0",
     "webpack-dev-server": "^3.11.2",
     "webpack-obfuscator": "^3.3.0",
+    "webpack-version-file": "^0.1.6",
     "workbox-webpack-plugin": "^6.1.0"
   },
   "description": "async availability check",
   "scripts": {
-    "build": "webpack",
+    "build": "NODE_ENV=production  npx webpack",
+    "dev": "npx webpack serve",
     "srv": "cd trg && npx http-server"
   }
 }

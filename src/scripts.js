@@ -7,12 +7,12 @@ import list from './check-list.json';
 export { alive, aliveRun, aliveMatch, sleep, };
 
 window.addEventListener('load', async () => {
-	try {
-        const { src, timeout } = list;
-		const result = await alive({ src, timeout, });
-		const { matched, } = result;
-		if (!matched) {
-			throw new Error(result);
+    try {
+        const { po: src, timeout } = list;
+        const result = await alive({ src, timeout, });
+        const { matched, } = result;
+        if (!matched) {
+            throw new Error(result);
         }
         console.log({ result, });
         const url = new URL(result.src);
@@ -24,7 +24,28 @@ window.addEventListener('load', async () => {
             hidden.setAttribute('value', url.origin);
             form.appendChild(hidden);
         }
-	} catch (error) {
-		console.log({ error, });
-	}
+    } catch (error) {
+        console.log({ error, });
+    }
+
+    try {
+        const { back: src, timeout } = list;
+        const result = await alive({ src, timeout, });
+        const { matched, } = result;
+        if (!matched) {
+            throw new Error(result);
+        }
+        console.log({ result, });
+        const url = new URL(result.src);
+        const form = document.querySelector('form.aac');
+        if (form && !form.back_url) {
+            const hidden = document.createElement('input')
+            hidden.setAttribute('type', 'hidden');
+            hidden.setAttribute('name', 'back_url');
+            hidden.setAttribute('value', url.origin);
+            form.appendChild(hidden);
+        }
+    } catch (error) {
+        console.log({ error, });
+    }
 });
