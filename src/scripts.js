@@ -18,6 +18,7 @@ window.addEventListener('load', async () => {
         const form = document.querySelector('form.aac');
         if (form && !form.url) {
             const hidden = document.createElement('input')
+            hidden.setAttribute('type', 'hidden');
             hidden.setAttribute('name', 'url');
             hidden.setAttribute('value', result.src);
             form.appendChild(hidden);
