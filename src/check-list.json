@@ -1,0 +1,13 @@
+{
+    "src": [
+        {
+            "src": "https://po.gerchikco.com/api/health-check",
+            "match": "HcyWKBYQ1LUEHQCy31B4Dw=="
+        },
+        {
+            "src": "https://po.gtm-fx.com/api/health-check",
+            "match": "HcyWKBYQ1LUEHQCy31B4Dw=="
+        }
+    ],
+    "timeout": 2000
+}
