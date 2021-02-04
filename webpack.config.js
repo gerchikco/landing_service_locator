@@ -56,6 +56,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
 
+const FileManagerPlugin = require('filemanager-webpack-plugin');
+
 
 const WebpackObfuscator = require('webpack-obfuscator');
 
@@ -103,7 +105,17 @@ module.exports = {
       stringArrayThreshold: 0.75,
     }, [
       // 'excluded_bundle_name.js', // not used yet
-    ])
+    ]),
+    new FileManagerPlugin({
+      events: {
+        onEnd: {
+          copy: [{
+            source: './trg/*.js',
+            destination: './docs/',
+          }],
+        },
+      },
+    }),
   ],
 
   module: {

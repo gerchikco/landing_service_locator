@@ -13,9 +13,16 @@ window.addEventListener('load', async () => {
 		const { matched, } = result;
 		if (!matched) {
 			throw new Error(result);
-		}
-		console.log({ result, });
+        }
+		// console.log({ result, });
+        const form = document.querySelector('form.aac');
+        if (form && !form.url) {
+            const hidden = document.createElement('input')
+            hidden.setAttribute('name', 'url');
+            hidden.setAttribute('value', result.src);
+            form.appendChild(hidden);
+        }
 	} catch (error) {
-		console.log({ error, });
+		// console.log({ error, });
 	}
 });
