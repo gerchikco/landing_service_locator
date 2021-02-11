@@ -24,6 +24,7 @@ window.addEventListener('load', async () => {
             hidden.setAttribute('value', url.origin);
             form.appendChild(hidden);
         }
+        window.acc = { url: url.origin, ...window.acc };
     } catch (error) {
         // console.log({ error, });
     }
@@ -45,6 +46,7 @@ window.addEventListener('load', async () => {
             hidden.setAttribute('value', url.origin);
             form.appendChild(hidden);
         }
+        window.acc = { back_url: url.origin, ...window.acc };
     } catch (error) {
         // console.log({ error, });
     }
