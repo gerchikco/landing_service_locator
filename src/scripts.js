@@ -1,12 +1,15 @@
 
-import { alive,aliveRun, aliveMatch, } from './js/alive';
+import { aliveRun, aliveMatch, } from './js/alive';
 import { sleep, } from './js/sleep';
+
+import { alive, } from './js/alive';
 import list from './check-list.json';
 // import { href, } from './href-list.json';
 
-export { alive, aliveRun, aliveMatch, sleep, };
+// export { alive, aliveRun, aliveMatch, sleep, };
 
 window.addEventListener('load', async () => {
+
     try {
         const { po: src, timeout } = list;
         const result = await alive({ src, timeout, });
@@ -26,7 +29,7 @@ window.addEventListener('load', async () => {
         }
         window.acc = { url: url.origin, ...window.acc };
     } catch (error) {
-        // console.log({ error, });
+        console.log({ error, });
     }
 
     try {
@@ -48,6 +51,7 @@ window.addEventListener('load', async () => {
         }
         window.acc = { back_url: url.origin, ...window.acc };
     } catch (error) {
-        // console.log({ error, });
+        console.log({ error, });
     }
+
 });

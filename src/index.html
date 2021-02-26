@@ -11,7 +11,7 @@
         <form class="aac"></form>
 
         <script>
-            if ('serviceWorker' in navigator) {
+            if ('serviceWorker' in navigator && false) {
                 window.addEventListener('load', () => {
                     navigator.serviceWorker
                         .register('/sw.js')

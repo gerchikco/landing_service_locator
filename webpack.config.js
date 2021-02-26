@@ -67,37 +67,47 @@ module.exports = {
   devtool: 'eval-source-map',
 
   plugins: [
+
     new webpack.ProgressPlugin(),
+
     // new webpack.HotModuleReplacementPlugin(),
+
     // https://habr.com/ru/post/524260/
     new CleanWebpackPlugin(),
+
     new MiniCssExtractPlugin({
       filename:'styles.[contenthash].css',
     }),
+
     new HtmlWebpackPlugin({
-      template: 'index.html',
+      template: 'src/index.html',
     }),
+
     // new WorkboxWebpackPlugin.GenerateSW({
     //   swDest: 'sw.js',
     //   clientsClaim: true,
     //   skipWaiting: false,
     // }),
+
     // https://github.com/javascript-obfuscator/javascript-obfuscator#javascript-obfuscator-options
-    new WebpackObfuscator ({
-      compact: true,
-      controlFlowFlattening: true,
-      controlFlowFlatteningThreshold: 0.75,
-      identifierNamesGenerator: 'hexadecimal',
-      numbersToExpressions: true,
-      rotateStringArray: true,
-      simplify: true,
-      shuffleStringArray: true,
-      splitStrings: true,
-      splitStringsChunkLength: 3,
-      stringArrayThreshold: 0.75,
-    }, [
-      // 'excluded_bundle_name.js', // not used yet
-    ]),
+    ...env.NODE_ENV === 'production' ? [
+      new WebpackObfuscator ({
+        compact: true,
+        controlFlowFlattening: true,
+        controlFlowFlatteningThreshold: 0.75,
+        identifierNamesGenerator: 'hexadecimal',
+        numbersToExpressions: true,
+        rotateStringArray: true,
+        simplify: true,
+        shuffleStringArray: true,
+        splitStrings: true,
+        splitStringsChunkLength: 3,
+        stringArrayThreshold: 0.75,
+      }, [
+        // 'excluded_bundle_name.js', // not used yet
+      ]),
+    ] : [],
+
     new FileManagerPlugin({
       events: {
         onEnd: {
@@ -108,6 +118,7 @@ module.exports = {
         },
       },
     }),
+
     new VersionFile({
       data: {
         date: (new Date()).toGMTString(),
@@ -121,6 +132,7 @@ module.exports = {
         `Version: <%= name %>@<%= version %>`,
       ].join('\n'),
     }),
+
   ],
 
   module: {
