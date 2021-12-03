@@ -6,7 +6,15 @@
         },
         {
             "match": "\"kOu4GmRGB1r336BVi25UMw==\"",
+            "src": "https://backoffice.gerchik.co/api/core/account/health-check"
+        },
+        {
+            "match": "\"kOu4GmRGB1r336BVi25UMw==\"",
             "src": "https://backoffice.gtm-fx.com/api/core/account/health-check"
+        },
+        {
+            "match": "\"kOu4GmRGB1r336BVi25UMw==\"",
+            "src": "https://backoffice.gerchik-fx.com/api/core/account/health-check"
         },
         {
             "match": "\"kOu4GmRGB1r336BVi25UMw==\"",
@@ -25,6 +33,10 @@
         {
             "match": "\"HcyWKBYQ1LUEHQCy31B4Dw==\"",
             "src": "https://po.gtm-fx.com/api/health-check"
+        },
+        {
+            "match": "\"HcyWKBYQ1LUEHQCy31B4Dw==\"",
+            "src": "https://po.gerchik-fx.com/api/health-check"
         },
         {
             "match": "\"HcyWKBYQ1LUEHQCy31B4Dw==\"",
